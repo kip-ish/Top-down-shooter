@@ -98,9 +98,9 @@ GameObject:
   - component: {fileID: 5924065041185642632}
   - component: {fileID: 3415297927281796373}
   - component: {fileID: 3345290397948115441}
-  - component: {fileID: -5859796436037924907}
+  - component: {fileID: -7937569424513298059}
   m_Layer: 0
-  m_Name: AlienUFO
+  m_Name: Camouflager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 3
---- !u!114 &-5859796436037924907
+--- !u!114 &-7937569424513298059
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,7 +180,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8406438712167521905}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67f396fff58b7a14195d110a5f99c20e, type: 3}
+  m_Script: {fileID: 11500000, guid: a7bb126747e59934687c225e8d553b7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 2
+  _enemyRadius: 0.5
+  _camouflageRadius: 2
+  _normalShape: {fileID: 3176019786303021639, guid: 63d0d494aeacd1547883b6bb233e61f4, type: 3}
+  _camoShape: {fileID: 21300000, guid: 52e505063f452214784d60dd4ee8e268, type: 3}

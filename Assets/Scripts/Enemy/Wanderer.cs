@@ -5,7 +5,7 @@ public class Wanderer : Enemy {
 
     
     protected override void Move() {
-        transform.position += Speed * Time.deltaTime * _moveDirection;
+        transform.position += Speed * _speedMultiplier * Time.deltaTime * _moveDirection;
         base.Move();
     }
 

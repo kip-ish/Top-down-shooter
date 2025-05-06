@@ -21,7 +21,6 @@ public class Bullet : MonoBehaviour {
         RaycastHit2D hitSomething = Physics2D.CircleCast(transform.position, _bulletRadius, transform.up, 0.15f);
         if(hitSomething && hitSomething.transform.TryGetComponent(out IDamageable component)) {
             component.TakeDamage(1);
-            Player.Instance.AddScore(1);
             DestroyBullet();
         }
     }

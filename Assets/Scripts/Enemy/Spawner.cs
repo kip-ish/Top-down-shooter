@@ -6,8 +6,6 @@ public class Spawner : MonoBehaviour {
 
     [SerializeField] List<Enemy> _enemies = new();
 
-    [SerializeField] float _spawnCooldown;
-    [SerializeField] bool _canSpawn = true;
 
     [SerializeField] float _xPosOffset;
     [SerializeField] float _yPosOffset;
@@ -26,61 +24,33 @@ public class Spawner : MonoBehaviour {
         if(Instance == null) Instance = this;
     }
 
-    void Start() {
-        StartCoroutine(SpawnEnemyCoroutine());
-    }
+
+  
 
 
-    IEnumerator SpawnEnemyCoroutine() {
-        while (_canSpawn) {
-            yield return new WaitForSeconds(_spawnCooldown);
+    public void SpawnRandomEnemy(float speedMultiplier = 1f) {
+        int randomIndex = Random.Range(0, _enemies.Count);
+        SpawnSide side = (SpawnSide)Random.Range(0, 4);
 
-            if (_enemies == null || _enemies.Count == 0) {
-                Debug.LogWarning("No enemies to spawn!");
-                continue;
-            }
+        Vector2 offset = new Vector2(
+            side == SpawnSide.Left ? -_xPosOffset : side == SpawnSide.Right ? _xPosOffset : 0f,
+            side == SpawnSide.Top ? _yPosOffset : side == SpawnSide.Bottom ? -_yPosOffset : 0f
+        );
 
+        Vector2 spawnPos = SpawnerPosition(offset, side);
+        Enemy enemy = Instantiate(_enemies[randomIndex], spawnPos, Quaternion.identity);
+        enemy.SetMoveDirection(GetDirectionFromSide(side), speedMultiplier); // Set direction + scale
 
-            int randomSpawnDirection = Random.Range(0, 4);
-            SpawnSide side = (SpawnSide)randomSpawnDirection;
-
-            RandomSpawnDirection(side, 
-                side == SpawnSide.Left ? -_xPosOffset :
-                side == SpawnSide.Right ? _xPosOffset : 0f,
-                
-                side == SpawnSide.Top ? _yPosOffset :
-                side == SpawnSide.Bottom ? -_yPosOffset : 0f
-            );
-
-        }
-    }
-
-
-    void RandomSpawnDirection(SpawnSide side, float xOffset, float yOffset) {
-
-        Debug.Log($"Spawning from {side}");
-
-        int randomEnemySpawn = Random.Range(0, _enemies.Count);
-        Vector2 spawnPos = SpawnerPosition(new Vector2(xOffset, yOffset), side);
-
-        Enemy enemy = Instantiate(_enemies[randomEnemySpawn], spawnPos, Quaternion.identity);
         enemy.gameObject.AddComponent<DestroyOffscreen>();
+    }
 
-        if(enemy is Wanderer || enemy is ShapeShifter) {
-            switch(side) {
-                case SpawnSide.Top:
-                    enemy.SetMoveDirection(Vector3.down);
-                    break;
-                case SpawnSide.Bottom:
-                    enemy.SetMoveDirection(Vector3.up);
-                    break;
-                case SpawnSide.Left:
-                    enemy.SetMoveDirection(Vector3.right);
-                    break;
-                case SpawnSide.Right:
-                    enemy.SetMoveDirection(Vector3.left);
-                    break;
-            }
+    Vector2 GetDirectionFromSide(SpawnSide side) {
+        switch (side) {
+            case SpawnSide.Top: return Vector2.down;
+            case SpawnSide.Bottom: return Vector2.up;
+            case SpawnSide.Left: return Vector2.right;
+            case SpawnSide.Right: return Vector2.left;
+            default: return Vector2.zero;
         }
     }
     

@@ -24,7 +24,6 @@ public class Player : MonoBehaviour {
     [Space]
     [Header("Fire Settings")]
     [SerializeField] float _fireCooldown;
-    public int Score {get; private set;}
     
     float _lastFire;
 
@@ -52,11 +51,11 @@ public class Player : MonoBehaviour {
 
         transform.position += Time.deltaTime * (Vector3)_velocity;
 
-        ClampMove();
+        ClampPosition();
 
     }
 
-    void ClampMove() {
+    void ClampPosition() {
         Vector3 screenToWorld = Camera.main.ScreenToWorldPoint(new(Screen.width, Screen.height));
 
         Vector3 clampPos = transform.position;
@@ -100,9 +99,8 @@ public class Player : MonoBehaviour {
         }
     }
 
-
-    public void AddScore(int score) {
-        Score += score;
+    public void DestroyPlayer() {
+        Destroy(gameObject);
     }
 }
 
