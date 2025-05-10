@@ -2,20 +2,38 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour {
   
-  public float Speed = 2f;
+
+  HealthSystem _healthSystem;
   protected Vector3 _moveDirection;
   protected float _speedMultiplier = 1;
+  public float Speed = 2f;
   [SerializeField] private float _enemyRadius;
+
+  public static Enemy Instance {get; private set;}
+
+
+  void Awake() {
+    if(Instance == null) Instance = this;
+  }
+
+  void Start() {
+    if(_healthSystem == null) {
+        _healthSystem = gameObject.AddComponent<HealthSystem>();
+    }
+  }
 
   void Update() {
     HitPlayer();
     Move();
   }
 
-  protected virtual void Move(){}
+  protected virtual void Move() {
+    transform.position += Speed * Time.deltaTime * _speedMultiplier * _moveDirection;
+  }
 
   public void SetMoveDirection(Vector3 direction, float speedMultiplier = 1) {
     _moveDirection = direction;
+    _moveDirection.Normalize();
     _speedMultiplier = speedMultiplier;
   }
 
@@ -27,6 +45,8 @@ public class Enemy : MonoBehaviour {
         Destroy(gameObject);
     }
   }
+
+  public bool EnemyIsDead => Instance == null;
 
   void OnDrawGizmos() {
     Gizmos.DrawWireSphere(transform.position, _enemyRadius);

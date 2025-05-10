@@ -24,10 +24,6 @@ public class Spawner : MonoBehaviour {
         if(Instance == null) Instance = this;
     }
 
-
-  
-
-
     public void SpawnRandomEnemy(float speedMultiplier = 1f) {
         int randomIndex = Random.Range(0, _enemies.Count);
         SpawnSide side = (SpawnSide)Random.Range(0, 4);

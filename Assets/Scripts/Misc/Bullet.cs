@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour {
 
     [SerializeField] float _bulletRadius = 0.15f;
 
+    Player _player;
+
     void Update() {
         transform.position += _bulletSpeed * Time.deltaTime * _dir;
 
@@ -18,12 +20,15 @@ public class Bullet : MonoBehaviour {
             DestroyBullet();
         }
 
-        RaycastHit2D hitSomething = Physics2D.CircleCast(transform.position, _bulletRadius, transform.up, 0.15f);
-        if(hitSomething && hitSomething.transform.TryGetComponent(out IDamageable component)) {
+        Collider2D hitSomething = Physics2D.OverlapCircle(transform.position, _bulletRadius);
+        if(hitSomething != null && hitSomething.TryGetComponent(out IDamageable component)) {
             component.TakeDamage(1);
+            _player.ChargeMissile(1);
             DestroyBullet();
         }
     }
+
+    
 
     void OnDrawGizmos() {
         Gizmos.color = Color.white;
@@ -32,6 +37,10 @@ public class Bullet : MonoBehaviour {
 
     void DestroyBullet() {
         Destroy(gameObject);
+    }
+
+    public void SetSender(Player sender) {
+        _player = sender;
     }
 
     public void SetBulletDirection(Vector3 dir) => _dir = dir.normalized;

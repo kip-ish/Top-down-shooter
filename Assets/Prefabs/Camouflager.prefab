@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 52e505063f452214784d60dd4ee8e268, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a4fc64cfc1f636d4aac4a1e48dbb85e1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,8 +97,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5924065041185642632}
   - component: {fileID: 3415297927281796373}
-  - component: {fileID: 3345290397948115441}
   - component: {fileID: -7937569424513298059}
+  - component: {fileID: 6276223398224493363}
   m_Layer: 0
   m_Name: Camouflager
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 8406438712167521905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.67, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -158,19 +158,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &3345290397948115441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8406438712167521905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc753cb2ba0150a49914f4863747ef5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 3
 --- !u!114 &-7937569424513298059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +172,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2
   _enemyRadius: 0.5
-  _camouflageRadius: 2
-  _normalShape: {fileID: 3176019786303021639, guid: 63d0d494aeacd1547883b6bb233e61f4, type: 3}
-  _camoShape: {fileID: 21300000, guid: 52e505063f452214784d60dd4ee8e268, type: 3}
+  _camouflageRadius: 2.5
+  _normalShape: {fileID: 21300000, guid: 0f5e64b821441144bbb253e913b08c51, type: 3}
+  _camoShape: {fileID: 21300000, guid: a4fc64cfc1f636d4aac4a1e48dbb85e1, type: 3}
+--- !u!114 &6276223398224493363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406438712167521905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc753cb2ba0150a49914f4863747ef5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 3

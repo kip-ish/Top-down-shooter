@@ -76,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3176019786303021639, guid: 63d0d494aeacd1547883b6bb233e61f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d839fced75d8ee45b3135b4cead257a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.0833334, y: 1.125}
+  m_Size: {x: 1.3333334, y: 1.3333334}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -97,8 +97,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5924065041185642632}
   - component: {fileID: 3415297927281796373}
-  - component: {fileID: 3345290397948115441}
   - component: {fileID: -8644739356813382884}
+  - component: {fileID: -2394213478974735471}
   m_Layer: 0
   m_Name: AlienChaser
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Transform:
   m_GameObject: {fileID: 8406438712167521905}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.67, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -158,19 +158,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
---- !u!114 &3345290397948115441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8406438712167521905}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc753cb2ba0150a49914f4863747ef5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: 3
 --- !u!114 &-8644739356813382884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,3 +172,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 2
   _enemyRadius: 0.5
+--- !u!114 &-2394213478974735471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406438712167521905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc753cb2ba0150a49914f4863747ef5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _health: 3

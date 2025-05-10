@@ -9,17 +9,13 @@ public class WaveManager : MonoBehaviour {
     [SerializeField] private int enemiesIncrement = 2;
     [SerializeField] private float spawnInterval = 0.5f;
 
-    public Action<int> OnWaveChange;
-
     public static WaveManager Instance{get; private set;}
 
+    public Action<int> OnWaveUIChanged;
     private int _currentWave = 0;
 
     void Awake() {
         if(Instance == null) Instance = this;
-    }
-    void Start()
-    {
         StartCoroutine(WaveLoop());
     }
 
@@ -28,8 +24,8 @@ public class WaveManager : MonoBehaviour {
         while (true)
         {
             _currentWave++;
+            OnWaveUIChanged?.Invoke(_currentWave);
             int enemiesToSpawn = enemiesStartCount + (_currentWave - 1) * enemiesIncrement;
-            OnWaveChange?.Invoke(_currentWave);
 
             Debug.Log($"Wave {_currentWave} — Spawning {enemiesToSpawn} enemies");
 

@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 71ef2bea853a2b64eb8856c0af412572, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8db5335a3bafbcc46bb1f68caaaba0de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   _drag: 1.2
   _maxSpeed: 7
   _bulletSpawnPos: {fileID: 3634148193486593743}
+  _infinityBullet: 1
   _bulletSpeed: 15
   _bulletSpread: 3
   _bulletAmount: 500

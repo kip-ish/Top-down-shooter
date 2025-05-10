@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     [Space]
     [Header("Bullet Settings")]
     [SerializeField] Transform _bulletSpawnPos;
+    [SerializeField] bool _unlimitedBullet = true;
     [SerializeField] float _bulletSpeed;
     [SerializeField] float _bulletSpread;
     [SerializeField] int _bulletAmount;
@@ -25,6 +26,9 @@ public class Player : MonoBehaviour {
     [Header("Fire Settings")]
     [SerializeField] float _fireCooldown;
     
+
+    int _missile;
+
     float _lastFire;
 
     void Awake() {
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour {
         Move();
         RotateTowardsMouse();
         FireBullet();
+        LaunchMissile();
     }
 
     void Move() {
@@ -92,15 +97,35 @@ public class Player : MonoBehaviour {
             float spreadAngle = Random.Range(-_bulletSpread, _bulletSpread);
             Vector3 direction = Quaternion.Euler(0, 0, spreadAngle) * transform.up;
 
+            bullet.SetSender(this);
             bullet.SetBulletSpeed(_bulletSpeed);
             bullet.SetBulletDirection(direction);
-            //_bulletAmount--;
+
+            if(!_unlimitedBullet) _bulletAmount--;
+            
             _lastFire = Time.time;
         }
     }
 
+    void LaunchMissile() {
+        if(_input.LaunchMissile && CanLaunchMissile) {
+            Debug.Log("Missile Launched!!");
+        }
+    }
+
+    public void ChargeMissile(int chargeAmount) {
+        if(CanLaunchMissile) return;
+        _missile += chargeAmount;
+    }
+
+    bool CanLaunchMissile => _missile >= 30;
+
     public void DestroyPlayer() {
         Destroy(gameObject);
+    }
+
+    void OnDisable() {
+        _input.DisableInputActions();
     }
 }
 
@@ -115,4 +140,9 @@ public class PlayerInput {
     public Vector2 Move => _inputActions.Player.Move.ReadValue<Vector2>().normalized;
     public Vector2 Look => _inputActions.Player.Look.ReadValue<Vector2>();
     public bool Fire => _inputActions.Player.Fire.IsPressed();
+    public bool LaunchMissile => _inputActions.Player.LaunchMissile.WasPerformedThisFrame();
+    
+    public void DisableInputActions() {
+        _inputActions.Player.Disable();   
+    }
 }
